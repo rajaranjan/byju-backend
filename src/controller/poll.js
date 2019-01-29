@@ -41,8 +41,13 @@ class pollController {
             .then((isSaved) => {
                 if(isSaved){
                     console.log("isSaved",isSaved)
-                    resolve(isSaved)
+                    return pollModel.find({})
                 }
+            })
+            .then((polls) => {
+		if(polls) {
+		    resolve(polls)
+		}
             })
             .catch((err) => {
                 reject({ code: 500, msg: "Error while Saving poll", error: err })
