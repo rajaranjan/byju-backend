@@ -65,6 +65,24 @@ class pollRoutes {
         }
     }
 
+    //delete a poll
+    deletePoll(req, res) {
+        if (req.userId) {
+            pollController.deletePoll(req)
+                .then((result) => {
+                    reqRes.responseHandler('Poll Deleted', result, res);
+                    res.end()
+                })
+                .catch((err) => {
+                    reqRes.httpErrorHandler(err, res);
+                    res.end();
+                })
+        } else {
+            reqRes.httpErrorHandler({ code: 422, msg: "Error while getching poll", error: 'Some error' }, res);
+            res.end();
+        }
+    }
+
     //add vote to a poll
     addVote(req, res) {
         if (req.userId) {
@@ -86,6 +104,7 @@ class pollRoutes {
         this.router.post('/', userAuth, this.createPoll)
         this.router.get('/list', userAuth, this.getPollList)
         this.router.get('/:id', userAuth, this.getPollDetails)
+        this.router.delete('/:id', userAuth, this.deletePoll)
         this.router.post('/vote', userAuth, this.addVote) 
     }
 }

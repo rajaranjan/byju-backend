@@ -110,6 +110,39 @@ class pollController {
             })
         })
     }
+
+    //delete a poll 
+    deletePoll(data) {
+        console.log(data.params.id);
+        return new Promise((resolve, reject) => {
+            pollModel.findOne({
+                "_id": data.params.id 
+            })
+            .then((poll) => {
+                console.log(poll);
+                if(poll){
+                    return pollModel.find({ "_id": data.params.id }).remove().exec()
+                } else {
+                    reject({ code: 500, msg: "Poll already exist", error: poll })
+                }
+            })
+            .then((isRemoved) => {
+                if(isRemoved){
+                    console.log("isRemoved",isRemoved)
+                    return pollModel.find({})
+                }
+            })
+            .then((polls) => {
+                if(polls) {
+                    resolve(polls)
+                }
+            })
+            .catch((err) => {
+                reject({ code: 500, msg: "Error while deleteing a poll", error: err })
+            })
+        })
+    }
+
     //add Vote
     addVote(data) {
         let userId = data.userId
