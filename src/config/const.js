@@ -4,7 +4,8 @@ export default function cred() {
             port: 9001,
             db: {
                 mongodb: {
-                    url: 'mongodb://165.227.240.215:27017/byju_db',
+                    //url: 'mongodb://165.227.240.215:27017/byju_db',
+                    url: 'mongodb://byju:byju12345@ds115035.mlab.com:15035/heroku_5q5hh93k',
                     // url: 'mongodb://enterpriseadmin:woohoo123@localhost:27017/woohoo_enterprise_db?authSource=woohoo_enterprise_db',
                     // username: 'byjuadmin',
                     // password: 'pass@123'
@@ -18,7 +19,8 @@ export default function cred() {
             port: 9001,
             db: {
                 mongodb: {
-                    url: 'mongodb://165.227.240.215:27017/byju_db',
+                    // url: 'mongodb://165.227.240.215:27017/byju_db',
+                    url: 'mongodb://byju:byju12345@ds115035.mlab.com:15035/heroku_5q5hh93k'
                     // url: 'mongodb://enterpriseadmin:woohoo123@localhost:27017/woohoo_enterprise_db?authSource=woohoo_enterprise_db',
                     // username: 'byjuadmin',
                     // password: 'pass@123'
